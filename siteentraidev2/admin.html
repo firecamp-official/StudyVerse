@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Admin – Gestion des cours</title>
+<link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+<header class="topbar">
+  <h1>🧑‍🏫 Admin – Gestion des cours</h1>
+</header>
+
+<main class="admin-container">
+
+  <section class="course-management card">
+    <input type="text" id="searchCourse" placeholder="Rechercher un cours...">
+    <select id="filterClass"><option value="">Toutes les classes</option></select>
+    <select id="filterSubject"><option value="">Toutes les matières</option></select>
+    <div id="courseList"></div>
+  </section>
+
+  <section class="course-form card">
+    <h2>Ajouter / Éditer un cours</h2>
+    <form id="courseForm">
+      <input name="title" placeholder="Titre du chapitre" required>
+      <select name="class" id="classSelect" required></select>
+      <select name="subject" id="subjectSelect" required></select>
+      <div id="sections"></div>
+      <button type="button" id="addSection">➕ Ajouter section</button>
+      <button type="submit">Publier / Sauvegarder</button>
+    </form>
+  </section>
+
+</main>
+
+<script type="module" src="js/admin.js"></script>
+</body>
+</html>
