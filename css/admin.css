@@ -1,14 +1,59 @@
-body {margin:0;font-family:'Segoe UI',Arial,sans-serif;background:#0f172a;color:#e5e7eb;}
-.topbar {background:#020617;padding:15px;color:#f97316;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.4);}
-.admin-container {display:flex;gap:20px;padding:20px;flex-wrap:wrap;}
-.card {background:#1e293b;padding:20px;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.4);}
-input,textarea,select,button {margin:5px 0;padding:10px;border-radius:8px;border:none;font-size:1rem;outline:none;background:#0f172a;color:#e5e7eb;}
-button {background:#f97316;color:white;cursor:pointer;transition:0.2s;font-weight:bold;}
-button:hover {background:#ea580c;transform:scale(1.05);}
-.section {margin-top:10px;padding:10px;background:#020617;border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,0.4);}
-.section input, .section textarea {width:100%;margin:5px 0;}
-.courseCard {padding:10px;margin:5px 0;background:#020617;border-radius:10px;display:flex;justify-content:space-between;align-items:center;}
-.courseCard h3 {margin:0;color:#f97316;}
-.courseCard button {margin-left:5px;}
-select {cursor:pointer;}
-@media(max-width:768px){.admin-container{flex-direction:column;}}
+@import url("./style.css");
+
+.topbar {
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  padding: 16px 24px;
+  color: white;
+  box-shadow: var(--shadow);
+}
+
+.admin-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding: 20px;
+}
+
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+
+.card h2 {
+  margin-bottom: 12px;
+  color: var(--primary);
+}
+
+#courseList {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.admin-course {
+  padding: 12px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  cursor: pointer;
+}
+
+.admin-course:hover {
+  border-color: var(--primary);
+}
+
+#sections > div {
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px dashed var(--primary-light);
+  border-radius: var(--radius);
+}
+
+/* Responsive admin */
+@media (max-width: 900px) {
+  .admin-container {
+    grid-template-columns: 1fr;
+  }
+}
