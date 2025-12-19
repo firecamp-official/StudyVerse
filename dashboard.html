@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Cours – Plateforme</title>
-    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -16,9 +15,25 @@
         <aside>
             <select id="classFilter"></select>
             <select id="subjectFilter"></select>
+            <a href="index.html">Déconnexion</a>
         </aside>
 
-        <main id="courseList"></main>
+        <main class="content">
+
+            <section>
+                <h2 class="ForcedColor">Tous les cours</h2>
+                <div id="courseList"></div>
+            </section>
+            <section class="latest-section">
+                <h2>Derniers cours ajoutés</h2>
+                <div id="latestCourses" class="latest-grid"></div>
+            </section>
+
+
+
+        </main>
+
+
 
     </div>
 
