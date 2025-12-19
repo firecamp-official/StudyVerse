@@ -1,184 +1,355 @@
 /* ===============================
-   VARIABLES GLOBALES
+   RESET & BASE
 ================================ */
-:root {
-  --bg: #f9f9fc;
-  --card-bg: #ffffff;
-  --primary: #7c3aed;
-  --primary-light: #a78bfa;
-  --text: #1f2937;
-  --muted: #6b7280;
-  --border: #e5e7eb;
-  --radius: 14px;
-  --shadow: 0 10px 25px rgba(124, 58, 237, 0.15);
-  --transition: 0.25s ease;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-/* ===============================
-   RESET
-================================ */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: "Inter", system-ui, sans-serif;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--bg);
-  color: var(--text);
+  margin: 0;
   min-height: 100vh;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: radial-gradient(1200px 600px at 10% 10%, #7c3aed33, transparent),
+    radial-gradient(1000px 500px at 90% 20%, #22d3ee33, transparent),
+    linear-gradient(180deg, #0b0f1a, #05070d);
+  color: #e5e7eb;
+}
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 /* ===============================
-   PAGE CONNEXION
+   VARIABLES
 ================================ */
-body.center {
+:root {
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.18);
+  --blur: blur(18px);
+
+  --primary: #7c3aed;
+  --primary-light: #a78bfa;
+  --accent: #22d3ee;
+
+  --radius: 18px;
+  --radius-sm: 12px;
+
+  --shadow-soft: 0 20px 50px rgba(0, 0, 0, 0.35);
+  --shadow-hover: 0 30px 80px rgba(124, 58, 237, 0.25);
+}
+
+/* ===============================
+   UTILS
+================================ */
+.center {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 14px;
+  gap: 16px;
+  padding: 32px;
+  min-height: 100vh;
+}
+
+/* ===============================
+   TITRES
+================================ */
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 h1 {
-  margin-bottom: 20px;
-  color: var(--primary);
-  font-size: 2rem;
+  font-size: clamp(2rem, 4vw, 3rem);
+  background: linear-gradient(90deg, #fff, var(--primary-light));
+  -webkit-background-clip: text;
+  color: transparent;
 }
 
+h2 {
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+}
+
+h3 {
+  font-size: 1.05rem;
+}
+
+/* ===============================
+   INPUTS / SELECTS
+================================ */
 input,
-select,
-button {
+select {
   width: 100%;
-  max-width: 320px;
-  padding: 12px 14px;
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  font-size: 1rem;
-  transition: var(--transition);
+  max-width: 420px;
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur);
+  color: #fff;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+input::placeholder {
+  color: #c7c9d1;
 }
 
 input:focus,
 select:focus {
-  outline: none;
   border-color: var(--primary);
-  box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.2);
+  box-shadow: 0 0 0 2px #7c3aed55;
 }
 
+/* ===============================
+   BUTTONS
+================================ */
 button {
-  background: linear-gradient(135deg, var(--primary), var(--primary-light));
-  color: white;
-  font-weight: 600;
+  width: 100%;
+  max-width: 420px;
+  padding: 14px 18px;
+  border-radius: var(--radius-sm);
   border: none;
   cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #fff;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
 }
 
 button:hover {
   transform: translateY(-2px);
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-hover);
+  filter: brightness(1.1);
+}
+
+button:active {
+  transform: translateY(0);
 }
 
 /* ===============================
-   LAYOUT DASHBOARD
+   LIENS
+================================ */
+a {
+  color: var(--primary-light);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ===============================
+   LAYOUT PRINCIPAL
 ================================ */
 .layout {
   display: grid;
   grid-template-columns: 260px 1fr;
-  gap: 20px;
-  padding: 20px;
+  gap: 24px;
+  padding: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 /* ===============================
-   SIDEBAR
+   ASIDE – RESPONSIVE UNIVERSEL
 ================================ */
+
 aside {
-  background: var(--card-bg);
-  border-radius: var(--radius);
-  padding: 20px;
-  box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
+  padding: 18px;
+
+  background: linear-gradient(160deg,
+      rgba(255, 255, 255, 0.14),
+      rgba(255, 255, 255, 0.04));
+  backdrop-filter: blur(22px);
+  border-radius: var(--radius);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-soft);
+
+  height: fit-content;
+  position: sticky;
+  top: 24px;
+}
+
+/* Sélecteurs */
+aside select {
+  width: 100%;
+  appearance: none;
+  padding: 14px 44px 14px 16px;
+  border-radius: 14px;
+
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04));
+  border: 1px solid rgba(255, 255, 255, 0.25);
+
+  color: #fff;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border .25s ease, box-shadow .25s ease, transform .2s ease;
+}
+
+aside select:hover {
+  transform: translateY(-1px);
+  border-color: var(--primary-light);
+}
+
+aside select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px #7c3aed55;
+}
+
+/* Lien déconnexion */
+aside a {
+  padding: 13px 16px;
+  text-align: center;
+  border-radius: 14px;
+
+  background: linear-gradient(135deg,
+      rgba(124, 58, 237, 0.3),
+      rgba(34, 211, 238, 0.18));
+  border: 1px solid rgba(255, 255, 255, 0.25);
+
+  color: #fff;
+  font-weight: 600;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+aside a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 60px rgba(124, 58, 237, 0.4);
+}
+
+
+/* ===============================
+   CONTENU
+================================ */
+main.content {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+main#course {
+  width: 100%;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+
+/* ===============================
+   CARTES (COURS)
+================================ */
+.card {
+  padding: 18px;
+  border-radius: var(--radius);
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-soft);
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
 }
 
 /* ===============================
-   CONTENU PRINCIPAL
+   LISTE DES COURS
 ================================ */
-main {
+#courseList {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 20px;
+  gap: 16px;
 }
 
 /* ===============================
-   CARTE DE COURS
+   DERNIERS COURS
 ================================ */
-.course-card {
-  background: var(--card-bg);
-  border-radius: var(--radius);
+.latest-section {
+  margin-top: 8px;
+}
+
+.latest-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.latest-card {
   padding: 18px;
-  box-shadow: var(--shadow);
-  transition: var(--transition);
+  border-radius: var(--radius);
+  background: linear-gradient(160deg,
+      rgba(255, 255, 255, 0.12),
+      rgba(255, 255, 255, 0.03));
+  border: 1px solid var(--glass-border);
+  backdrop-filter: var(--blur);
+  box-shadow: var(--shadow-soft);
   cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.course-card:hover {
-  transform: translateY(-4px);
-}
-
-.course-card h3 {
-  color: var(--primary);
-  margin-bottom: 6px;
-}
-
-.course-card p {
-  color: var(--muted);
-  font-size: 0.9rem;
+.latest-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: var(--shadow-hover);
 }
 
 /* ===============================
-   PAGE COURS
+   BADGES
 ================================ */
-#course {
-  background: var(--card-bg);
-  padding: 30px;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-}
-
-#course h2 {
-  color: var(--primary);
-  margin-bottom: 12px;
-}
-
-.section {
-  margin-top: 24px;
-}
-
-.section h3 {
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
   margin-bottom: 8px;
-  color: var(--primary-light);
 }
 
-.section img {
-  max-width: 100%;
-  border-radius: var(--radius);
-  margin-top: 10px;
+.badge.subject {
+  background: #22d3ee33;
+  color: #67e8f9;
+}
+
+.badge.class {
+  background: #7c3aed33;
+  color: #c4b5fd;
 }
 
 /* ===============================
-   FOOTER / LIENS
+   SECTIONS DE COURS
 ================================ */
-.footer {
-  margin-top: 40px;
-  text-align: center;
-  font-size: 0.85rem;
+section {
+  margin-bottom: 28px;
 }
 
-.footer a {
-  color: var(--primary);
-  text-decoration: none;
+section img {
+  max-width: 100%;
+  border-radius: var(--radius-sm);
+  margin-top: 12px;
+  box-shadow: var(--shadow-soft);
 }
 
 /* ===============================
@@ -189,13 +360,83 @@ main {
     grid-template-columns: 1fr;
   }
 
+
+}
+
+/* ===============================
+   MOBILE / TABLETTE
+================================ */
+@media (max-width: 768px) {
+
   aside {
+    position: fixed;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    top: auto;
+
     flex-direction: row;
-    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+
+    padding: 14px;
+    z-index: 1000;
   }
 
-  aside select {
-    flex: 1;
-    min-width: 140px;
+  aside select,
+  aside a {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 12px;
+    font-size: 0.9rem;
   }
+
+}
+
+/* ===============================
+   TRÈS PETITS ÉCRANS
+================================ */
+@media (max-width: 420px) {
+
+  aside {
+    gap: 8px;
+    padding: 12px;
+  }
+
+  aside a {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 500px) {
+  body {
+    font-size: 14px;
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  .center {
+    padding: 20px;
+  }
+}
+
+
+/* Menu déroulant – style harmonisé (limite navigateur) */
+select option {
+  background-color: #f3f4f8;
+  color: #111827;
+  font-weight: 500;
+}
+
+/* Option sélectionnée (Firefox surtout) */
+select option:checked {
+  background-color: #e0e7ff;
+  color: #312e81;
+}
+
+/* Hover (support partiel mais safe) */
+select option:hover {
+  background-color: #e5e7eb;
 }
